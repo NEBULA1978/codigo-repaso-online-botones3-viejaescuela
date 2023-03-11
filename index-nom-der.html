@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>El problema de innerHTML</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<style type="text/css">
+	*{
+		font-family: 'Montserrat', sans-serif;
+	}
+	input{		
+		padding:3px 6px;
+		outline:none;
+		margin-bottom:10px;
+		border:1px solid orangered;
+	}
+	div{
+		color:orangered;
+        display: inline-block;
+        margin-left: 10px;
+	}
+	button{
+		padding:3px 10px;
+        display: inline-block;
+	}
+	main{
+		width:270px;
+		height:325px;
+		border:1px solid orangered;
+		border-radius:6px;
+		padding:20px;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		margin:auto;
+	}
+</style>
+</head>
+<body>
+	<main>
+		<div id="caja">
+			<input id="nombre" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre2" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre3" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0" ancho="45">Aceptar</button>
+			<input id="nombre4" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre5" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+		</div>
+		
+	</main>
+	
+	<script type="text/javascript">
+		let inputs = document.querySelectorAll('input');
+		let botones = document.querySelectorAll('.boton0');
+
+		for (let i = 0; i < botones.length; i++) {
+			botones[i].addEventListener('click', () => {
+				let nombre = inputs[i].value.trim();
+				let nombre_mejorado = (nombre.substr(0, 1)).toUpperCase() + (nombre.substr(1)).toLowerCase();
+				if (nombre.length > 0) {
+					let nuevoDiv = document.createElement('div');
+					nuevoDiv.textContent = nombre_mejorado;
+					document.querySelector('#caja').appendChild(nuevoDiv);
+				}
+				inputs[i].focus();
+				inputs[i].value = "";
+			});
+		}
+	</script>
+</body>
+</html>

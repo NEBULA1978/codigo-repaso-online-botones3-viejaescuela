@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>El problema de innerHTML</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<style type="text/css">
+	*{
+		font-family: 'Montserrat', sans-serif;
+	}
+	input{		
+		padding:3px 6px;
+		outline:none;
+		margin-bottom:10px;
+		border:1px solid orangered;
+	}
+	div{
+		color:orangered;
+	}
+	button{
+		padding:3px 10px;
+	}
+	main{
+		width:270px;
+		height:325px;
+		border:1px solid orangered;
+		border-radius:6px;
+		padding:20px;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		margin:auto;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=inicio;
+	
+	function inicio(){
+		let botones=document.getElementsByClassName("boton0");
+		for(let i =0;i<botones.length;i++){
+			if(i==0)
+				botones[i].input="nombre";
+			else if(i==1)
+				botones[i].input="nombre2";
+			else if(i==2)
+				botones[i].input="nombre3";
+            else if(i==3)
+                    botones[i].input="nombre4";
+            else if(i==4)
+                    botones[i].input="nombre5";
+			botones[i].onclick=lista;
+		}	
+		// document.querySelector("button").onclick=lista;
+		document.querySelector("#nombre").onkeydown=teclado;
+	}
+	function teclado(parametro){
+		let codigoDeTecla=parametro.keyCode;
+		if (codigoDeTecla==13){
+			lista();
+		}
+	}
+	function lista(){
+		// let nombre=document.querySelector("#nombre").value.trim();
+		let input=document.getElementById(this.input);
+		let nombre = input.value.trim();
+		let nombre_mejorado=(nombre.substr(0,1)).toUpperCase()+(nombre.substr(1)).toLowerCase();
+		if (nombre.length>0){
+			document.querySelector("#caja").insertAdjacentHTML('beforeend',`<div>${nombre_mejorado}</div>`);	
+		}
+		input.focus();
+		input.value="";
+		if (this.ancho==45)
+			alert("Hola")
+		// document.querySelector("#nombre").focus();
+		// document.querySelector("#nombre").value="";		
+	}
+</script>
+</head>
+<body>
+	<main>
+		<div id="caja">
+			<input id="nombre" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre2" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre3" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0" ancho="45">Aceptar</button>
+			<input id="nombre4" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+			<input id="nombre5" placeholder="Escribe tu nombre" spellcheck="false" autofocus>
+			<button class="boton0">Aceptar</button>
+		</div>
+		
+	</main>
+</body>
